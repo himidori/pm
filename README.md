@@ -88,6 +88,17 @@ Simple password manager written in Go
 
 ## showing passwords
 
+### showing passwords in dmenu
+
+```
+./pm -m
+```
+
+### showing passwords in rofi
+```
+./pm -R
+```
+
 ### print all passwords
 
 ```
@@ -138,13 +149,3 @@ $ ./pm -ri 13
 successfuly removed password with id 13
 ```
 
-## showing passwords in dmenu
-
-```
-./pm -m
-```
-
-## showing passwords in rofi
-```
-./pm -R
-```
