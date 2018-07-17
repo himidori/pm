@@ -81,6 +81,11 @@ Simple password manager written in Go
 ./pm -wn porn -l coolpornsite.com -u john -L 32 -c 'my favorite site!'
 ```
 
+### adding a password in the interactive way
+```
+./pm -wI
+```
+
 ## showing passwords
 
 ### print all passwords
