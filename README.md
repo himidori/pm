@@ -58,3 +58,76 @@ Simple password manager written in Go
 -R                      show rofi
 -h                      show help
 ```
+
+# examples
+
+## adding a new password
+
+### store your own password
+
+```
+./pm -wn porn -l coolpornsite.com -u john -p coolpassword -c 'my favorite site!'
+```
+
+### let pm generate a password by omitting the -p flag
+
+```
+./pm -wn porn -l coolpornsite.com -u john -c 'my favorite site!'
+```
+
+### choose the length of a generated password with the -L flag
+
+```
+./pm -wn porn -l coolpornsite.com -u john -L 32 -c 'my favorite site!'
+```
+
+## showing passwords
+
+### print all passwords
+
+```
+$ ./pm -sn all
+id: 1
+name: porn
+resource: coolpornsite.com
+username: john
+comment: my favorite site! 
+group: 
+```
+
+### print all passwords related to the group 'work'
+
+```
+./pm -sg work
+```
+
+### print passwords in a nice formatted table by using the -t flag
+
+```
+$ ./pm -stn all
+id name resource         username comment           group 
+----------------------------------------------------------
+1  porn coolpornsite.com john     my favorite site!      
+```
+
+### find password by name and copy it in the clipboard
+
+```
+$ ./pm -sn porn
+password was copied to the clipboard!
+URL: coolpornsite.com
+User: xxx
+```
+
+### copy password in the clipboard and follow the link in the browser
+
+```
+./pm -son porn
+```
+
+## removing a password
+
+```
+$ ./pm -ri 13
+successfuly removed password with id 13
+```
