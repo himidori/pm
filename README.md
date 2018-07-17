@@ -88,13 +88,13 @@ Simple password manager written in Go
 
 ## showing passwords
 
-### showing passwords in dmenu
+### show passwords in dmenu
 
 ```
 ./pm -m
 ```
 
-### showing passwords in rofi
+### show passwords in rofi
 ```
 ./pm -R
 ```
