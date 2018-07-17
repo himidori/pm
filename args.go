@@ -222,7 +222,7 @@ func parseArgs() {
 				return
 			}
 
-			if len(passwd) > 1 || name == "all " {
+			if len(passwd) > 1 || name == "all" {
 				if table {
 					printTable(passwd)
 				} else {
