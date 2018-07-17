@@ -137,3 +137,14 @@ Group:
 $ ./pm -ri 13
 successfuly removed password with id 13
 ```
+
+## showing passwords in dmenu
+
+```
+./pm -m
+```
+
+## showing passwords in rofi
+```
+./pm -R
+```
