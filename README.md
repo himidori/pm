@@ -116,7 +116,8 @@ id name resource         username comment           group
 $ ./pm -sn porn
 password was copied to the clipboard!
 URL: coolpornsite.com
-User: xxx
+User: john
+Group: 
 ```
 
 ### copy password in the clipboard and follow the link in the browser
