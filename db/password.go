@@ -1,12 +1,7 @@
 package db
 
 import (
-	"crypto/md5"
-	"encoding/base64"
-	"fmt"
-	"math/rand"
-	"os/exec"
-	"time"
+	pwordgen "github.com/cmiceli/password-generator-go"
 )
 
 // Password struct
@@ -106,30 +101,5 @@ func SelectByGroupAndName(name string, group string) ([]*Password, error) {
 // method used for generating a password
 // of given length
 func GeneratePassword(length int) (string, error) {
-	if length < 16 {
-		length = 16
-	}
-
-	bytes, err := exec.Command("head", "-c4096", "/dev/urandom").Output()
-	if err != nil {
-		return "", err
-	}
-
-	hash := fmt.Sprintf("%x", md5.Sum(bytes))
-	b64 := []rune(base64.StdEncoding.EncodeToString([]byte(hash)))
-	chars := []rune("!@()#$%^&")
-	rand.Seed(time.Now().UnixNano())
-
-	for i := 0; i < 10; i++ {
-		for _, c := range chars {
-			b64[rand.Intn(len(b64))] = c
-		}
-	}
-
-	outStr := make([]rune, length)
-	for i := range outStr {
-		outStr[i] = b64[rand.Intn(len(b64))]
-	}
-
-	return string(outStr), nil
+	return pwordgen.NewPassword(length), nil
 }
