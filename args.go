@@ -5,10 +5,13 @@ import (
 	"strconv"
 	"strings"
 
+	"os"
+
 	"github.com/atotto/clipboard"
 	"github.com/fatih/color"
 	"github.com/himidori/pm/db"
 	"github.com/himidori/pm/utils"
+	"github.com/himidori/pm/vault"
 	"github.com/ogier/pflag"
 )
 
@@ -30,6 +33,29 @@ var (
 	rofi        bool
 	table       bool
 )
+
+func vaultImportExport() {
+	if len(os.Args) > 2 {
+		switch os.Args[1] {
+		case "vault":
+			switch os.Args[2] {
+			case "export":
+				if err := vault.ExportPasswords(); err != nil {
+					fmt.Println(err.Error())
+					os.Exit(2)
+				}
+				os.Exit(0)
+			case "import":
+				fmt.Println("Import")
+				os.Exit(0)
+			default:
+				return
+			}
+		default:
+			return
+		}
+	}
+}
 
 func printUsage() {
 	fmt.Println(`Simple password manager written in Go
@@ -56,6 +82,8 @@ func printUsage() {
 }
 
 func initArgs() {
+	vaultImportExport()
+
 	pflag.BoolVarP(&show, "show", "s", false, "show password")
 	pflag.StringVarP(&name, "name", "n", "", "name of the resource")
 	pflag.StringVarP(&group, "group", "g", "", "name of the group")
