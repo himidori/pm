@@ -2,9 +2,16 @@
 
 [Difrex's perl password manager](https://github.com/difrex/pm) rewritten in go
 
+# install
+
+From AUR
+```
+pacaur -S pm
+```
+
 # usage
 
-## gpg key 
+## gpg key
 
 generate a gpg key if you don't have one
 
@@ -14,7 +21,7 @@ gpg --gen-key
 
 set your gpg key as the default one in ~/.gnupg/gpg.conf
 
-or use a custom key instead 
+or use a custom key instead
 
 ```
 # Create file with key email
@@ -23,7 +30,7 @@ key_email@example.com
 EOF
 ```
 
-## first run 
+## first run
 
 ```
 $ ./pm
@@ -107,8 +114,8 @@ id: 1
 name: porn
 resource: coolpornsite.com
 username: john
-comment: my favorite site! 
-group: 
+comment: my favorite site!
+group:
 ```
 
 ### print all passwords related to the group 'work'
@@ -121,9 +128,9 @@ group:
 
 ```
 $ ./pm -stn all
-id name resource         username comment           group 
+id name resource         username comment           group
 ----------------------------------------------------------
-1  porn coolpornsite.com john     my favorite site!      
+1  porn coolpornsite.com john     my favorite site!
 ```
 
 ### find password by name and copy it in the clipboard
@@ -133,7 +140,7 @@ $ ./pm -sn porn
 password was copied to the clipboard!
 URL: coolpornsite.com
 User: john
-Group: 
+Group:
 ```
 
 ### copy password in the clipboard and follow the link in the browser
@@ -148,4 +155,3 @@ Group:
 $ ./pm -ri 13
 successfuly removed password with id 13
 ```
-
