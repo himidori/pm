@@ -1,6 +1,8 @@
 package db
 
 import (
+	"fmt"
+
 	pwordgen "github.com/cmiceli/password-generator-go"
 )
 
@@ -19,6 +21,14 @@ type Password struct {
 // method used for inserting a new password
 // into the database
 func AddPassword(pass *Password) error {
+	ok, err := checkPassword(pass)
+	if err != nil {
+		return err
+	}
+	if ok {
+		return fmt.Errorf("Password %s in group %s already present", pass.Name, pass.Group)
+	}
+
 	db, err := decrypt()
 	if err != nil {
 		return err
