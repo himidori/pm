@@ -5,7 +5,7 @@ import (
 )
 
 // checkPassword returns true if password already exists in the db
-func checkPassword(pass *Password) (bool, err) {
+func checkPassword(pass *Password) (bool, error) {
 	db, err := decrypt()
 	if err != nil {
 		return false, err
