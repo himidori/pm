@@ -103,8 +103,8 @@ func ShowMenu(name string, passwords string) (string, error) {
 	var cmd *exec.Cmd
 	if name == "dmenu" {
 		cmd = exec.Command("dmenu")
-	} else if name == "rofi" {
-		cmd = exec.Command("rofi", "-dmenu", "-p", "select password")
+	} else if name == "rofi" || name == "wofi" {
+		cmd = exec.Command(name, "-dmenu", "-p", "select password")
 	} else {
 		e := errors.New("Invalid command: " + name)
 		return "", e

@@ -12,6 +12,11 @@ import (
 	"github.com/ogier/pflag"
 )
 
+const (
+	rofiLauncher string = "rofi"
+	wofiLauncher string = "wofi"
+)
+
 var (
 	show        bool
 	name        string
@@ -138,13 +143,8 @@ func parseArgs() {
 	}
 
 	if rofi {
-		ok, err := utils.IsIntalled("rofi")
-		if err != nil {
-			fmt.Println("failed to check rofi installation:", err)
-			return
-		}
-		if !ok {
-			fmt.Println("rofi is not installed")
+		launcher, ok, err := checkLauncherInstall()
+		if err != nil || !ok {
 			return
 		}
 
@@ -171,7 +171,7 @@ func parseArgs() {
 				strings.Repeat(" ", groupSpaces) +
 				p.Resource + "\n"
 		}
-		res, err := utils.ShowMenu("rofi", str)
+		res, err := utils.ShowMenu(launcher, str)
 		if err != nil {
 			fmt.Println("failed to show menu:", err)
 			return
@@ -630,4 +630,28 @@ func printTable(passwords []*db.Password) {
 	}
 
 	fmt.Println()
+}
+
+func checkLauncherInstall() (string, bool, error) {
+	launcher := wofiLauncher
+	ok, err := utils.IsIntalled(launcher)
+	if err != nil {
+		fmt.Println("failed to check wofi installation:", err)
+		return "", ok, err
+	}
+	if !ok {
+		fmt.Println("wofi is not installed")
+		launcher = rofiLauncher
+		ok, err := utils.IsIntalled(launcher)
+		if err != nil {
+			fmt.Println("failed to check rofi installation:", err)
+			return "", ok, err
+		}
+		if !ok {
+			fmt.Println("rofi is not installed")
+			return "", ok, nil
+		}
+	}
+
+	return launcher, true, nil
 }
