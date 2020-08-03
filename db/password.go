@@ -9,13 +9,13 @@ import (
 // Password struct
 // holds every database field
 type Password struct {
-	Id       int
-	Name     string
-	Resource string
-	Password string
-	Username string
-	Comment  string
-	Group    string
+	Id       int    `json:"id"`
+	Name     string `json:"name"`
+	Resource string `json:"resource"`
+	Password string `json:"password`
+	Username string `json:"username"`
+	Comment  string `json:"comment"`
+	Group    string `json:"group"`
 }
 
 // method used for inserting a new password
