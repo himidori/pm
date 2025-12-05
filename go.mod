@@ -13,5 +13,5 @@ require (
 	github.com/himidori/pm/db v0.0.0-00010101000000-000000000000
 	github.com/himidori/pm/utils v0.0.0-00010101000000-000000000000
 	github.com/ogier/pflag v0.0.1
-	github.com/sirupsen/logrus v1.6.0 // indirect
+	github.com/sirupsen/logrus v1.8.3 // indirect
 )
